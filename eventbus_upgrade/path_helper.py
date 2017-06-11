@@ -5,7 +5,9 @@ import log
 from os import listdir
 from os.path import join, isfile, splitext
 
+
 JAVA_FILE_EXT = ".java"
+
 
 def get_root_path():
 
@@ -34,6 +36,7 @@ def ignore_hide_file(file_name):
         return True
     return False
 
+
 def list_dir_and_java_file(dir_path):
     java_files = []
     dirs = []
@@ -49,3 +52,19 @@ def list_dir_and_java_file(dir_path):
             java_files.append(path)
 
     return dirs, java_files
+
+
+def list_all_java_file(root_path):
+    dir_stack = []
+    all_java_files = []
+
+    dir_stack.append(root_path)
+
+    while len(dir_stack) > 0:
+        path = dir_stack.pop()
+
+        dirs, java_files = list_dir_and_java_file(path)
+        dir_stack.extend(dirs)
+        all_java_files.extend(java_files)
+
+    return all_java_files
