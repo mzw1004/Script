@@ -1,5 +1,1 @@
-.gitignore
 /.idea/
-eventbus_upgrade/log.pyc
-eventbus_upgrade/path_helper.pyc
-eventbus_upgrade/test.pyc

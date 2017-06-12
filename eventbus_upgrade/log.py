@@ -8,13 +8,16 @@ def print_file(file_path):
             print line
 
 
-def print_files_name(files):
-    for f in files:
-        print f
+def log(msgs):
+    print msgs
 
 
-def log(msg):
+def i(*msgs):
+    print msgs
+
+
+def d(*msgs):
     if not DEBUG_MODE:
         return
     else:
-        print msg
+        print msgs
