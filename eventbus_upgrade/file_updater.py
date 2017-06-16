@@ -41,6 +41,12 @@ def should_add_annotation(line):
     return None
 
 
+def has_annotation(line, annotation):
+    line_copy = str(line)
+    annotation_pos = line_copy.find(annotation)
+    return annotation_pos != -1
+
+
 def is_import_statement(line):
     line_copy = str(line)
     return line_copy.startswith("import ")
@@ -65,9 +71,10 @@ def update_file(file_path):
             # add subscribe annotation
             annotation = should_add_annotation(line)
             if annotation is not None:
-                if (not should_add_package):
-                    should_add_package = True
-                line = annotation + line
+                if (not has_annotation(lines[index - 1], annotation)):
+                    if (not should_add_package):
+                        should_add_package = True
+                    line = annotation + line
 
             lines.append(line)
 
